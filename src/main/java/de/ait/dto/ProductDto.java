@@ -1,7 +1,9 @@
-package de.ait.models;
+package de.ait.dto;
 
-public class Product {
-    private String productId;
+import de.ait.models.CoffeeType;
+import de.ait.models.RoastDegree;
+
+public class ProductDto {
     private RoastDegree roastDegree;
     private CoffeeType coffeeType;
     private String country;
@@ -9,22 +11,13 @@ public class Product {
     private double rating;
     private boolean isAvailable;
 
-    public Product(String productId, String country, RoastDegree roastDegree, CoffeeType coffeeType, double pricePer100Gr, double rating, boolean isAvailable) {
-        this.productId = productId;
+    public ProductDto(String country, RoastDegree roastDegree, CoffeeType coffeeType, double pricePer100Gr, double rating, boolean isAvailable) {
         this.roastDegree = roastDegree;
         this.coffeeType = coffeeType;
         this.country = country;
         this.pricePer100Gr = pricePer100Gr;
         this.rating = rating;
         this.isAvailable = isAvailable;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
     }
 
     public RoastDegree getRoastDegree() {
@@ -77,8 +70,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "\nproductId='" + productId + '\'' +
-                ", roastDegree=" + roastDegree +
+        return "\nroastDegree=" + roastDegree +
                 ", coffeeType=" + coffeeType +
                 ", country='" + country + '\'' +
                 ", pricePer100Gr=" + pricePer100Gr +
