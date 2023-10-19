@@ -35,14 +35,20 @@ public class ProductsRepositoryTextFileImpl implements ProductsRepository {
 
     @Override
     public String save(Product product) {
-//        try (FileWriter fileWriter = new FileWriter(fileName);
-//             BufferedWriter bf = new BufferedWriter(fileWriter)) {
-//            String str = product.getProductId() + "|" + product.getCountry() + "|" + product.getRoastDegree() + "|"
-//                    + product.getCoffeeType() + "|" + product.getPricePer100Gr() + "|" + product.getRating()
-//        } catch (IOException e) {
-//            System.out.println("Произошла ошибка");
-//        }
-//        return products;
+        String str = product.getProductId() + "|" + product.getCountry() + "|" + product.getRoastDegree() + "|"
+                + product.getCoffeeType() + "|" + product.getPricePer100Gr() + "|" + product.getRating() + "|"
+                + product.isAvailable();
+        try (FileWriter fileWriter = new FileWriter(fileName, true);
+             BufferedWriter bf = new BufferedWriter(fileWriter)) {
+            bf.write(str);
+        } catch (IOException e) {
+            System.out.println("Произошла ошибка");
+        }
+        return str;
+    }
+
+    @Override
+    public Product deleteById(String id) {
         return null;
     }
 

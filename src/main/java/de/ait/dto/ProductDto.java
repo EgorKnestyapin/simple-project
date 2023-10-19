@@ -4,14 +4,15 @@ import de.ait.models.CoffeeType;
 import de.ait.models.RoastDegree;
 
 public class ProductDto {
-    private RoastDegree roastDegree;
-    private CoffeeType coffeeType;
+    private String roastDegree;
+    private String coffeeType;
     private String country;
-    private double pricePer100Gr;
-    private double rating;
-    private boolean isAvailable;
+    private String pricePer100Gr;
+    private String rating;
+    private String isAvailable;
 
-    public ProductDto(String country, RoastDegree roastDegree, CoffeeType coffeeType, double pricePer100Gr, double rating, boolean isAvailable) {
+    public ProductDto(String country, String roastDegree, String coffeeType, String pricePer100Gr, String rating,
+                      String isAvailable) {
         this.roastDegree = roastDegree;
         this.coffeeType = coffeeType;
         this.country = country;
@@ -20,19 +21,19 @@ public class ProductDto {
         this.isAvailable = isAvailable;
     }
 
-    public RoastDegree getRoastDegree() {
+    public String getRoastDegree() {
         return roastDegree;
     }
 
-    public void setRoastDegree(RoastDegree roastDegree) {
+    public void setRoastDegree(String roastDegree) {
         this.roastDegree = roastDegree;
     }
 
-    public CoffeeType getCoffeeType() {
+    public String getCoffeeType() {
         return coffeeType;
     }
 
-    public void setCoffeeType(CoffeeType coffeeType) {
+    public void setCoffeeType(String coffeeType) {
         this.coffeeType = coffeeType;
     }
 
@@ -44,27 +45,27 @@ public class ProductDto {
         this.country = country;
     }
 
-    public double getPricePer100Gr() {
+    public String getPricePer100Gr() {
         return pricePer100Gr;
     }
 
-    public void setPricePer100Gr(double pricePer100Gr) {
+    public void setPricePer100Gr(String pricePer100Gr) {
         this.pricePer100Gr = pricePer100Gr;
     }
 
-    public double getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
-    public boolean isAvailable() {
+    public String isAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(String available) {
         isAvailable = available;
     }
 

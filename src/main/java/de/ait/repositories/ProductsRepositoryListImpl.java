@@ -6,6 +6,7 @@ import de.ait.models.RoastDegree;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class ProductsRepositoryListImpl implements ProductsRepository {
@@ -29,5 +30,14 @@ public class ProductsRepositoryListImpl implements ProductsRepository {
     public String save(Product product) {
         products.add(product);
         return product.toString();
+    }
+
+    @Override
+    public Product deleteById(String id) {
+        Optional<Product> productDeleted = products.stream()
+                .filter(product -> product.getProductId().equals(id))
+                .findFirst();
+        products.remove(productDeleted.orElse(null));
+        return productDeleted.orElse(null);
     }
 }

@@ -8,4 +8,6 @@ public interface ProductsRepository {
     public List<Product> findAll();
 
     String save(Product product);
+
+    Product deleteById(String id);
 }

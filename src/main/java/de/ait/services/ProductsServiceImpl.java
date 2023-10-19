@@ -1,10 +1,12 @@
-package de.ait.servivces;
+package de.ait.services;
 
 import de.ait.dto.ProductDto;
+import de.ait.models.CoffeeType;
 import de.ait.models.Product;
 import de.ait.models.RoastDegree;
 import de.ait.repositories.ProductsRepository;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -98,9 +100,20 @@ public class ProductsServiceImpl implements ProductsService {
 
     @Override
     public String addCoffee(ProductDto productDto) {
-        Product product = new Product(UUID.randomUUID().toString(), productDto.getCountry(),
-                productDto.getRoastDegree(), productDto.getCoffeeType(), productDto.getPricePer100Gr(),
-                productDto.getRating(), productDto.isAvailable());
-        return productRepository.save(product);
+        try {
+            Product product = new Product(UUID.randomUUID().toString(), productDto.getCountry(),
+                    RoastDegree.valueOf(productDto.getRoastDegree()), CoffeeType.valueOf(productDto.getCoffeeType()),
+                    Double.parseDouble(productDto.getPricePer100Gr()), Double.parseDouble(productDto.getRating()),
+                    Boolean.parseBoolean(productDto.isAvailable()));
+            return productRepository.save(product);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Переданы неверные данные");
+        }
+        return null;
+    }
+
+    @Override
+    public Product removeCoffeeById(String id) {
+        return productRepository.deleteById(id);
     }
 }
