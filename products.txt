@@ -2,4 +2,5 @@ gj24-ds14-45vh-52gs|Brazil|LIGHT|ARABICA|5.5|4.1|true
 pa13-ry54-lw23-31lk|Columbia|MIDDLE|HYBRID|4.2|4|true
 ae15-gs68-la18-35bk|Jordan|DARK|ROBUSTA|2|3.2|true
 kq32-aw63-db34-le43|Kenya|LIGHT|DECAF|4.8|3.8|false
-741d3b8f-0be2-4d3a-8d12-b2793f7b8e71|Kongo|MIDDLE|ROBUSTA|5.2|4.0|true
+bb76cd24-de60-4d70-ac47-fc4432652836|Kongo|MIDDLE|ROBUSTA|4.0|4.0|true
+403fbf0d-0c45-4a88-95db-1334c51de1ee|Nigeria|LIGHT|HYBRID|4.0|4.0|true

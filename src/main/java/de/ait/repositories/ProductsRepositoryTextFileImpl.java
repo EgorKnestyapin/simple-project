@@ -37,7 +37,7 @@ public class ProductsRepositoryTextFileImpl implements ProductsRepository {
     public String save(Product product) {
         String str = product.getProductId() + "|" + product.getCountry() + "|" + product.getRoastDegree() + "|"
                 + product.getCoffeeType() + "|" + product.getPricePer100Gr() + "|" + product.getRating() + "|"
-                + product.isAvailable();
+                + product.isAvailable() + "\n";
         try (FileWriter fileWriter = new FileWriter(fileName, true);
              BufferedWriter bf = new BufferedWriter(fileWriter)) {
             bf.write(str);
@@ -49,7 +49,25 @@ public class ProductsRepositoryTextFileImpl implements ProductsRepository {
 
     @Override
     public Product deleteById(String id) {
-        return null;
+        Product productDeleted = null;
+        try (BufferedWriter bf = new BufferedWriter(new FileWriter(fileName));
+             BufferedWriter bfTemp = new BufferedWriter(new FileWriter("temp.txt"));
+             BufferedReader br = new BufferedReader(new FileReader(fileName));
+             BufferedReader brTemp = new BufferedReader(new FileReader(fileName))) {
+            br.transferTo(bfTemp);
+            String line;
+            while ((line = brTemp.readLine()) != null) {
+                if (line.split("\\|")[0].equals(id)) {
+                    productDeleted = parseLine(line);
+                    continue;
+                }
+                bf.write(line);
+            }
+            bfTemp.write("");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return productDeleted;
     }
 
     public static Product parseLine(String line) {

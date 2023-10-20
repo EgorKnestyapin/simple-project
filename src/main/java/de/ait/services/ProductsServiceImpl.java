@@ -93,10 +93,7 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
-    public List<String> getCoffeeFromCountry() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите название страны:");
-        String country = scanner.next();
+    public List<String> getCoffeeFromCountry(String country) {
         return productRepository.findAll().stream()
                 .filter(product -> product.isAvailable() && product.getCountry().equalsIgnoreCase(country))
                 .map(p -> "\nСтрана: " + p.getCountry() + ", сорт кофе: " + p.getCoffeeType() + ", степень обжарки: "

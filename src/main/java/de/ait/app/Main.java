@@ -14,9 +14,9 @@ public class Main {
 
     public static void main(String[] args) {
         // конфигурируем приложение - с какими импл будем работать
-        ProductsRepository productsRepository = new ProductsRepositoryListImpl();
-//        ProductsRepository productsTextFileRepository = new ProductsRepositoryTextFileImpl("products.txt");
-        ProductsService productsService = new ProductsServiceImpl(productsRepository);
+//        ProductsRepository productsRepository = new ProductsRepositoryListImpl();
+        ProductsRepository productsTextFileRepository = new ProductsRepositoryTextFileImpl("products.txt");
+        ProductsService productsService = new ProductsServiceImpl(productsTextFileRepository);
         while (true) {
             System.out.println("1. Вывести всё кофе в наличии");
             System.out.println("2. Вывести кофе с самым высоким рейтингом");
@@ -65,7 +65,9 @@ public class Main {
                     break;
                 case 8:
                     System.out.println("Выводим кофе из определенной страны");
-                    System.out.println(productsService.getCoffeeFromCountry());
+                    System.out.println("Введите название страны:");
+                    String country = scanner.next();
+                    System.out.println(productsService.getCoffeeFromCountry(country));
                     break;
                 case 9:
                     System.out.println("Выводим кофе с сортировкой по рейтингу");
@@ -74,7 +76,7 @@ public class Main {
                 case 10:
                     System.out.println("Добавляем кофе");
                     System.out.println("Введите название страны:");
-                    String country = scanner.nextLine();
+                    String countryAdd = scanner.nextLine();
                     System.out.println("Введите степень обжарки(LIGHT/MIDDLE/DARK):");
                     String roastDegree = scanner.nextLine();
                     System.out.println("Введите сорт кофе(ARABICA/ROBUSTA/HYBRID/DECAF):");
@@ -85,7 +87,7 @@ public class Main {
                     String rating = scanner.nextLine();
                     System.out.println("Введите наличие кофе на складе (true/false):");
                     String isAvailable = scanner.nextLine();
-                    System.out.println(productsService.addCoffee(new ProductDto(country, roastDegree, coffeeType,
+                    System.out.println(productsService.addCoffee(new ProductDto(countryAdd, roastDegree, coffeeType,
                             pricePer100Gr, rating, isAvailable)));
                     break;
                 case 11:

@@ -20,7 +20,7 @@ public interface ProductsService {
 
     List<String> getCoffeeDarkRoastDegree();
 
-    List<String> getCoffeeFromCountry();
+    List<String> getCoffeeFromCountry(String country);
 
     List<String> getCoffeeSortedByRating();
 
