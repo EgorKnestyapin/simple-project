@@ -24,7 +24,11 @@ public interface ProductsService {
 
     List<String> getCoffeeSortedByRating();
 
+    Product findById(String id);
+
     String addCoffee(ProductDto productDto);
+
+    List<String> updateProductStatus(String id);
 
     Product removeCoffeeById(String id);
 }

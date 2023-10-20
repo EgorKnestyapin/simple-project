@@ -14,9 +14,9 @@ public class Main {
 
     public static void main(String[] args) {
         // конфигурируем приложение - с какими импл будем работать
-//        ProductsRepository productsRepository = new ProductsRepositoryListImpl();
-        ProductsRepository productsTextFileRepository = new ProductsRepositoryTextFileImpl("products.txt");
-        ProductsService productsService = new ProductsServiceImpl(productsTextFileRepository);
+        ProductsRepository productsRepository = new ProductsRepositoryListImpl();
+//        ProductsRepository productsTextFileRepository = new ProductsRepositoryTextFileImpl("products.txt");
+        ProductsService productsService = new ProductsServiceImpl(productsRepository);
         while (true) {
             System.out.println("1. Вывести всё кофе в наличии");
             System.out.println("2. Вывести кофе с самым высоким рейтингом");
@@ -36,7 +36,7 @@ public class Main {
             // вызываем соответствующие "процессы" в нашей программе
             switch (command) {
                 case 1:
-                    System.out.println("Выводим всё кофе в наличии");
+                    System.out.println("Выводим весь кофе в наличии");
                     System.out.println(productsService.getCoffee());
                     break;
                 case 2:
@@ -92,13 +92,14 @@ public class Main {
                     break;
                 case 11:
                     System.out.println("Изменяем степень доступности по id");
-                    // код
+                    String id = scanner.nextLine();
+                    System.out.println(productsService.updateProductStatus(id));
                     break;
                 case 12:
                     System.out.println("Удаляем кофе по id");
                     System.out.println("Введите id:");
-                    String id = scanner.nextLine();
-                    System.out.println(productsService.removeCoffeeById(id));
+                    String idDelete = scanner.nextLine();
+                    System.out.println(productsService.removeCoffeeById(idDelete));
                     break;
                 case 13:
                     System.out.println("Выход из программы");

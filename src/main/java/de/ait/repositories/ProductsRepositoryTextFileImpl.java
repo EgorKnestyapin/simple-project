@@ -53,17 +53,17 @@ public class ProductsRepositoryTextFileImpl implements ProductsRepository {
         try (BufferedWriter bf = new BufferedWriter(new FileWriter(fileName));
              BufferedWriter bfTemp = new BufferedWriter(new FileWriter("temp.txt"));
              BufferedReader br = new BufferedReader(new FileReader(fileName));
-             BufferedReader brTemp = new BufferedReader(new FileReader(fileName))) {
+             BufferedReader brTemp = new BufferedReader(new FileReader("temp.txt"))) {
             br.transferTo(bfTemp);
             String line;
             while ((line = brTemp.readLine()) != null) {
+                System.out.println(line);
                 if (line.split("\\|")[0].equals(id)) {
                     productDeleted = parseLine(line);
                     continue;
                 }
                 bf.write(line);
             }
-            bfTemp.write("");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

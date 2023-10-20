@@ -114,6 +114,14 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
+    public Product findById(String id) {
+        Optional<Product> foundProduct = productRepository.findAll().stream()
+                .filter(p -> p.getProductId().equals(id))
+                .findFirst();
+        return foundProduct.orElse(null);
+    }
+
+    @Override
     public String addCoffee(ProductDto productDto) {
         try {
             Product product = new Product(UUID.randomUUID().toString(), productDto.getCountry(),
@@ -125,6 +133,18 @@ public class ProductsServiceImpl implements ProductsService {
             System.out.println("Переданы неверные данные");
         }
         return null;
+    }
+
+    @Override
+    public List<String> updateProductStatus(String id) {
+
+        return productRepository.findAll().stream()
+                .filter(product -> id.equals(product.getProductId()))
+                .peek(product -> product.setAvailable(!product.isAvailable()))
+                .map(p -> "\nСтрана: " + p.getCountry() + ", сорт кофе: " + p.getCoffeeType() + ", степень обжарки: "
+                        + p.getRoastDegree() + ", цена за 100 гр.: " + p.getPricePer100Gr() + ", рейтинг: "
+                        + p.getRating())
+                .toList();
     }
 
     @Override
