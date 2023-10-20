@@ -18,7 +18,7 @@ public class Main {
 //        ProductsRepository productsTextFileRepository = new ProductsRepositoryTextFileImpl("products.txt");
         ProductsService productsService = new ProductsServiceImpl(productsRepository);
         while (true) {
-            System.out.println("1. Вывести всё кофе в наличии");
+            System.out.println("1. Вывести весь кофе в наличии");
             System.out.println("2. Вывести кофе с самым высоким рейтингом");
             System.out.println("3. Вывести самое дешёвое кофе");
             System.out.println("4. Вывести самое дорогое кофе");
@@ -27,10 +27,11 @@ public class Main {
             System.out.println("7. Вывести кофе тёмной прожарки");
             System.out.println("8. Вывести кофе из определенной страны");
             System.out.println("9. Вывести кофе с сортировкой по рейтингу");
-            System.out.println("10. Добавить кофе");
-            System.out.println("11. Изменить степень доступности по id");
-            System.out.println("12. Удалить кофе по id");
-            System.out.println("13. Выход");
+            System.out.println("10. Сделать заказ");
+            System.out.println("11. Добавить кофе");
+            System.out.println("12. Изменить степень доступности по id");
+            System.out.println("13. Удалить кофе по id");
+            System.out.println("14. Выход");
             int command = scanner.nextInt(); // считываем команду
             scanner.nextLine(); // чтобы не было бага со сканером
             // вызываем соответствующие "процессы" в нашей программе
@@ -74,6 +75,14 @@ public class Main {
                     System.out.println(productsService.getCoffeeSortedByRating());
                     break;
                 case 10:
+                    System.out.println("Делаем заказ");
+                    System.out.println("Введите id товара:");
+                    String id = scanner.nextLine();
+                    System.out.println("Введите количество:");
+                    int count = scanner.nextInt();
+                    System.out.println(productsService.makeOrder(id, count));
+                    break;
+                case 11:
                     System.out.println("Добавляем кофе");
                     System.out.println("Введите название страны:");
                     String countryAdd = scanner.nextLine();
@@ -90,18 +99,18 @@ public class Main {
                     System.out.println(productsService.addCoffee(new ProductDto(countryAdd, roastDegree, coffeeType,
                             pricePer100Gr, rating, isAvailable)));
                     break;
-                case 11:
-                    System.out.println("Изменяем степень доступности по id");
-                    String id = scanner.nextLine();
-                    System.out.println(productsService.updateProductStatus(id));
-                    break;
                 case 12:
+                    System.out.println("Изменяем степень доступности по id");
+                    String idStatus = scanner.nextLine();
+                    System.out.println(productsService.updateProductStatus(idStatus));
+                    break;
+                case 13:
                     System.out.println("Удаляем кофе по id");
                     System.out.println("Введите id:");
                     String idDelete = scanner.nextLine();
                     System.out.println(productsService.removeCoffeeById(idDelete));
                     break;
-                case 13:
+                case 14:
                     System.out.println("Выход из программы");
                     System.exit(0);
                     break;

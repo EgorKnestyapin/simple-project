@@ -151,4 +151,11 @@ public class ProductsServiceImpl implements ProductsService {
     public Product removeCoffeeById(String id) {
         return productRepository.deleteById(id);
     }
+
+    @Override
+    public String makeOrder(String productId, int count) {
+        Product product = findById(productId);
+        // not completed yet
+        return "";
+    }
 }

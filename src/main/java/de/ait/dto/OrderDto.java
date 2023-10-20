@@ -1,26 +1,16 @@
-package de.ait.models;
+package de.ait.dto;
 
-public class Order {
-    private String id;
+public class OrderDto {
     private String productId;
     private int count;
     private String email;
     private double bill;
 
-    public Order(String id, String productId, int count, String email, double bill) {
-        this.id = id;
+    public OrderDto(String productId, int count, String email, double bill) {
         this.productId = productId;
         this.count = count;
         this.email = email;
         this.bill = bill;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getProductId() {
@@ -58,7 +48,6 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "id='" + id + '\'' +
                 ", productId='" + productId + '\'' +
                 ", count=" + count +
                 ", email='" + email + '\'' +

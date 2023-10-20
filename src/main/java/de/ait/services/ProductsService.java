@@ -31,4 +31,6 @@ public interface ProductsService {
     List<String> updateProductStatus(String id);
 
     Product removeCoffeeById(String id);
+
+    String makeOrder(String productId, int count);
 }
