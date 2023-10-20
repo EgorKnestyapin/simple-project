@@ -23,7 +23,9 @@ public class ProductsServiceImpl implements ProductsService {
     public List<String> getCoffee() {
         return productRepository.findAll().stream()
                 .filter(Product::isAvailable)
-                .map(Product::toString)
+                .map(p -> "\nСтрана: " + p.getCountry() + ", сорт кофе: " + p.getCoffeeType() + ", степень обжарки: "
+                        + p.getRoastDegree() + ", цена за 100 гр.: " + p.getPricePer100Gr() + ", рейтинг: "
+                        + p.getRating())
                 .toList();
     }
 
@@ -32,7 +34,9 @@ public class ProductsServiceImpl implements ProductsService {
         Optional<String> coffeeWithHighestRating = productRepository.findAll().stream()
                 .filter(Product::isAvailable)
                 .max((a, b) -> Double.compare(a.getRating(), b.getRating()))
-                .map(Product::toString);
+                .map(p -> "\nСтрана: " + p.getCountry() + ", сорт кофе: " + p.getCoffeeType() + ", степень обжарки: "
+                        + p.getRoastDegree() + ", цена за 100 гр.: " + p.getPricePer100Gr() + ", рейтинг: "
+                        + p.getRating());
         return coffeeWithHighestRating.orElse(null);
     }
 
@@ -41,7 +45,9 @@ public class ProductsServiceImpl implements ProductsService {
         Optional<String> mostExpensiveCoffee = productRepository.findAll().stream()
                 .filter(Product::isAvailable)
                 .min((a, b) -> Double.compare(a.getPricePer100Gr(), b.getPricePer100Gr()))
-                .map(Product::toString);
+                .map(p -> "\nСтрана: " + p.getCountry() + ", сорт кофе: " + p.getCoffeeType() + ", степень обжарки: "
+                        + p.getRoastDegree() + ", цена за 100 гр.: " + p.getPricePer100Gr() + ", рейтинг: "
+                        + p.getRating());;
         return mostExpensiveCoffee.orElse(null);
     }
 
@@ -50,7 +56,9 @@ public class ProductsServiceImpl implements ProductsService {
         Optional<String> mostExpensiveCoffee = productRepository.findAll().stream()
                 .filter(Product::isAvailable)
                 .max((a, b) -> Double.compare(a.getPricePer100Gr(), b.getPricePer100Gr()))
-                .map(Product::toString);
+                .map(p -> "\nСтрана: " + p.getCountry() + ", сорт кофе: " + p.getCoffeeType() + ", степень обжарки: "
+                        + p.getRoastDegree() + ", цена за 100 гр.: " + p.getPricePer100Gr() + ", рейтинг: "
+                        + p.getRating());;
         return mostExpensiveCoffee.orElse(null);
     }
 
@@ -58,7 +66,9 @@ public class ProductsServiceImpl implements ProductsService {
     public List<String> getCoffeeLightRoastDegree() {
         return productRepository.findAll().stream()
                 .filter(product -> product.isAvailable() && product.getRoastDegree() == RoastDegree.LIGHT)
-                .map(Product::toString)
+                .map(p -> "\nСтрана: " + p.getCountry() + ", сорт кофе: " + p.getCoffeeType() + ", степень обжарки: "
+                        + p.getRoastDegree() + ", цена за 100 гр.: " + p.getPricePer100Gr() + ", рейтинг: "
+                        + p.getRating())
                 .toList();
     }
 
@@ -66,7 +76,9 @@ public class ProductsServiceImpl implements ProductsService {
     public List<String> getCoffeeMiddleRoastDegree() {
         return productRepository.findAll().stream()
                 .filter(product -> product.isAvailable() && product.getRoastDegree() == RoastDegree.MIDDLE)
-                .map(Product::toString)
+                .map(p -> "\nСтрана: " + p.getCountry() + ", сорт кофе: " + p.getCoffeeType() + ", степень обжарки: "
+                        + p.getRoastDegree() + ", цена за 100 гр.: " + p.getPricePer100Gr() + ", рейтинг: "
+                        + p.getRating())
                 .toList();
     }
 
@@ -74,7 +86,9 @@ public class ProductsServiceImpl implements ProductsService {
     public List<String> getCoffeeDarkRoastDegree() {
         return productRepository.findAll().stream()
                 .filter(product -> product.isAvailable() && product.getRoastDegree() == RoastDegree.DARK)
-                .map(Product::toString)
+                .map(p -> "\nСтрана: " + p.getCountry() + ", сорт кофе: " + p.getCoffeeType() + ", степень обжарки: "
+                        + p.getRoastDegree() + ", цена за 100 гр.: " + p.getPricePer100Gr() + ", рейтинг: "
+                        + p.getRating())
                 .toList();
     }
 
@@ -85,7 +99,9 @@ public class ProductsServiceImpl implements ProductsService {
         String country = scanner.next();
         return productRepository.findAll().stream()
                 .filter(product -> product.isAvailable() && product.getCountry().equalsIgnoreCase(country))
-                .map(Product::toString)
+                .map(p -> "\nСтрана: " + p.getCountry() + ", сорт кофе: " + p.getCoffeeType() + ", степень обжарки: "
+                        + p.getRoastDegree() + ", цена за 100 гр.: " + p.getPricePer100Gr() + ", рейтинг: "
+                        + p.getRating())
                 .toList();
     }
 
@@ -94,7 +110,9 @@ public class ProductsServiceImpl implements ProductsService {
         return productRepository.findAll().stream()
                 .filter(Product::isAvailable)
                 .sorted((a, b) -> Double.compare(b.getRating(), a.getRating()))
-                .map(Product::toString)
+                .map(p -> "\nСтрана: " + p.getCountry() + ", сорт кофе: " + p.getCoffeeType() + ", степень обжарки: "
+                        + p.getRoastDegree() + ", цена за 100 гр.: " + p.getPricePer100Gr() + ", рейтинг: "
+                        + p.getRating())
                 .toList();
     }
 
