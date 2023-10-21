@@ -25,6 +25,15 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
+    public List<String> getOrdersWithoutIds() {
+        return orderRepository.findAll().stream()
+                .map(order -> "\nВаш заказ:" + "\nId продукта: " + order.getProductId() + ", количество: "
+                        + order.getCount() + "\nОбщий счет: " + order.getBill() + ", чек отправлен на email: "
+                        + order.getEmail())
+                .toList();
+    }
+
+    @Override
     public String makeOrder(OrderDto orderDto) {
         Product product = productsService.findById(orderDto.getProductId());
         if (product == null) return "Такого товара нет в наличии";

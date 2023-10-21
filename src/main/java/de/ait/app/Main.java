@@ -2,10 +2,7 @@ package de.ait.app;
 
 import de.ait.dto.OrderDto;
 import de.ait.dto.ProductDto;
-import de.ait.repositories.OrdersRepository;
-import de.ait.repositories.OrdersRepositoryListImpl;
-import de.ait.repositories.ProductsRepository;
-import de.ait.repositories.ProductsRepositoryListImpl;
+import de.ait.repositories.*;
 import de.ait.services.OrdersService;
 import de.ait.services.OrdersServiceImpl;
 import de.ait.services.ProductsService;
@@ -19,9 +16,9 @@ public class Main {
     public static void main(String[] args) {
         // конфигурируем приложение - с какими импл будем работать
         ProductsRepository productsRepository = new ProductsRepositoryListImpl();
-        OrdersRepository orderRepository = new OrdersRepositoryListImpl();
 //        ProductsRepository productsTextFileRepository = new ProductsRepositoryTextFileImpl("products.txt");
         ProductsService productsService = new ProductsServiceImpl(productsRepository);
+        OrdersRepository orderRepository = new OrdersRepositoryListImpl();
         OrdersService ordersService = new OrdersServiceImpl(orderRepository, productsService);
         while (true) {
             System.out.println("1. Вывести весь кофе в наличии");
@@ -29,8 +26,8 @@ public class Main {
             System.out.println("3. Вывести самое дешёвое кофе");
             System.out.println("4. Вывести самое дорогое кофе");
             System.out.println("5. Вывести кофе лёгкой обжарки");
-            System.out.println("6. Вывести кофе средней прожарки");
-            System.out.println("7. Вывести кофе тёмной прожарки");
+            System.out.println("6. Вывести кофе средней обжарки");
+            System.out.println("7. Вывести кофе тёмной обжарки");
             System.out.println("8. Вывести кофе из определенной страны");
             System.out.println("9. Вывести кофе с сортировкой по рейтингу");
             System.out.println("10. Сделать заказ");

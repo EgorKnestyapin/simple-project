@@ -124,7 +124,7 @@ public class ProductsServiceImpl implements ProductsService {
     @Override
     public Product findById(String id) {
         Optional<Product> foundProduct = productRepository.findAll().stream()
-                .filter(p -> p.isAvailable() && p.getProductId().equals(id))
+                .filter(p -> p.getProductId().equals(id))
                 .findFirst();
         return foundProduct.orElse(null);
     }

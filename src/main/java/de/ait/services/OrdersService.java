@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface OrdersService {
     List<String> getOrders();
+
+    List<String> getOrdersWithoutIds();
+
     String makeOrder(OrderDto orderDto);
 }

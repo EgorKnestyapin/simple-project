@@ -50,24 +50,39 @@ public class ProductsRepositoryTextFileImpl implements ProductsRepository {
     @Override
     public Product deleteById(String id) {
         Product productDeleted = null;
-        try (BufferedWriter bf = new BufferedWriter(new FileWriter(fileName));
-             BufferedWriter bfTemp = new BufferedWriter(new FileWriter("temp.txt"));
-             BufferedReader br = new BufferedReader(new FileReader(fileName));
-             BufferedReader brTemp = new BufferedReader(new FileReader("temp.txt"))) {
-            br.transferTo(bfTemp);
+        copyFile(fileName, "temp.txt");
+        try (BufferedReader br = new BufferedReader(new FileReader("temp.txt"));
+             BufferedWriter bf = new BufferedWriter(new FileWriter(fileName))) {
             String line;
-            while ((line = brTemp.readLine()) != null) {
-                System.out.println(line);
+            while ((line = br.readLine()) != null) {
                 if (line.split("\\|")[0].equals(id)) {
                     productDeleted = parseLine(line);
                     continue;
                 }
-                bf.write(line);
+                bf.write(line + "\n");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        clearFile("temp.txt");
         return productDeleted;
+    }
+
+    private void copyFile(String from, String to) {
+        try (BufferedReader br = new BufferedReader(new FileReader(from));
+             BufferedWriter bf = new BufferedWriter(new FileWriter(to))) {
+            br.transferTo(bf);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void clearFile(String fileName) {
+        try(BufferedWriter bf = new BufferedWriter(new FileWriter(fileName))) {
+            bf.write("");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static Product parseLine(String line) {
