@@ -28,7 +28,7 @@ class OrdersServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        ordersService = new OrdersServiceImpl(new OrdersRepositoryListImpl(), productsService);
+        ordersService = new OrdersServiceImpl(new OrdersRepositoryListImpl());
     }
 
     @Test
@@ -43,7 +43,8 @@ class OrdersServiceImplTest {
         List<String> actual = ordersService.getOrders();
         List<String> expected = List.of();
         assertEquals(expected, actual);
-        ordersService.makeOrder(new OrderDto("jordanId", "5", "john@gmail.com"));
+        ordersService.makeOrder(new OrderDto("jordanId", "5", "john@gmail.com"),
+                productsService.findById("jordanId"));
         actual = ordersService.getOrdersWithoutIds();
         expected = List.of(
                 "\nВаш заказ:\nId продукта: jordanId, количество: 5"

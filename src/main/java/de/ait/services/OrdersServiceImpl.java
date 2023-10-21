@@ -9,12 +9,10 @@ import java.util.List;
 import java.util.UUID;
 
 public class OrdersServiceImpl implements OrdersService {
-    ProductsService productsService;
     OrdersRepository orderRepository;
 
-    public OrdersServiceImpl(OrdersRepository orderRepository, ProductsService productsService) {
+    public OrdersServiceImpl(OrdersRepository orderRepository) {
         this.orderRepository = orderRepository;
-        this.productsService = productsService;
     }
 
     @Override
@@ -34,8 +32,7 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public String makeOrder(OrderDto orderDto) {
-        Product product = productsService.findById(orderDto.getProductId());
+    public String makeOrder(OrderDto orderDto, Product product) {
         if (product == null) return "Такого товара нет в наличии";
         int count = Integer.parseInt(orderDto.getCount());
         double bill = count * product.getPricePer100Gr();

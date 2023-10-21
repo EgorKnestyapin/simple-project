@@ -2,6 +2,7 @@ package de.ait.app;
 
 import de.ait.dto.OrderDto;
 import de.ait.dto.ProductDto;
+import de.ait.models.Product;
 import de.ait.repositories.*;
 import de.ait.services.OrdersService;
 import de.ait.services.OrdersServiceImpl;
@@ -19,7 +20,7 @@ public class Main {
 //        ProductsRepository productsTextFileRepository = new ProductsRepositoryTextFileImpl("products.txt");
         ProductsService productsService = new ProductsServiceImpl(productsRepository);
         OrdersRepository orderRepository = new OrdersRepositoryListImpl();
-        OrdersService ordersService = new OrdersServiceImpl(orderRepository, productsService);
+        OrdersService ordersService = new OrdersServiceImpl(orderRepository);
         while (true) {
             System.out.println("1. Вывести весь кофе в наличии");
             System.out.println("2. Вывести кофе с самым высоким рейтингом");
@@ -87,7 +88,8 @@ public class Main {
                     System.out.println("Введите email для отправки чека:");
                     String email = scanner.nextLine();
                     OrderDto orderDto = new OrderDto(id, count, email);
-                    System.out.println(ordersService.makeOrder(orderDto));
+                    Product product = productsService.findById(id);
+                    System.out.println(ordersService.makeOrder(orderDto, product));
                     break;
                 case 11:
                     System.out.println("Выводим все сделанные заказы");
