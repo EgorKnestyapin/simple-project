@@ -1,5 +1,6 @@
 package de.ait.services;
 
+import de.ait.dto.OrderDto;
 import de.ait.dto.ProductDto;
 import de.ait.models.Product;
 
@@ -7,6 +8,8 @@ import java.util.List;
 
 public interface ProductsService {
     List<String> getCoffee();
+
+    List<String> getCoffeeWithoutIds();
 
     String getCoffeeWithHighestRating();
 
@@ -31,6 +34,4 @@ public interface ProductsService {
     List<String> updateProductStatus(String id);
 
     Product removeCoffeeById(String id);
-
-    String makeOrder(String productId, int count);
 }

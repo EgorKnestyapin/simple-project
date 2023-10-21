@@ -2,15 +2,13 @@ package de.ait.dto;
 
 public class OrderDto {
     private String productId;
-    private int count;
+    private String count;
     private String email;
-    private double bill;
 
-    public OrderDto(String productId, int count, String email, double bill) {
+    public OrderDto(String productId, String count, String email) {
         this.productId = productId;
         this.count = count;
         this.email = email;
-        this.bill = bill;
     }
 
     public String getProductId() {
@@ -21,11 +19,11 @@ public class OrderDto {
         this.productId = productId;
     }
 
-    public int getCount() {
+    public String getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(String count) {
         this.count = count;
     }
 
@@ -37,21 +35,12 @@ public class OrderDto {
         this.email = email;
     }
 
-    public double getBill() {
-        return bill;
-    }
-
-    public void setBill(double bill) {
-        this.bill = bill;
-    }
-
     @Override
     public String toString() {
         return "Order{" +
                 ", productId='" + productId + '\'' +
                 ", count=" + count +
                 ", email='" + email + '\'' +
-                ", bill=" + bill +
                 '}';
     }
 }

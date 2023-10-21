@@ -6,10 +6,8 @@ import de.ait.models.Product;
 import de.ait.models.RoastDegree;
 import de.ait.repositories.ProductsRepository;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 import java.util.UUID;
 
 public class ProductsServiceImpl implements ProductsService {
@@ -21,6 +19,16 @@ public class ProductsServiceImpl implements ProductsService {
 
     @Override
     public List<String> getCoffee() {
+        return productRepository.findAll().stream()
+                .filter(Product::isAvailable)
+                .map(p -> "\nId продукта: " + p.getProductId() + ", страна: " + p.getCountry() + ", сорт кофе: "
+                        + p.getCoffeeType() + ", степень обжарки: " + p.getRoastDegree() + ", цена за 100 гр.: "
+                        + p.getPricePer100Gr() + ", рейтинг: " + p.getRating())
+                .toList();
+    }
+
+    @Override
+    public List<String> getCoffeeWithoutIds() {
         return productRepository.findAll().stream()
                 .filter(Product::isAvailable)
                 .map(p -> "\nСтрана: " + p.getCountry() + ", сорт кофе: " + p.getCoffeeType() + ", степень обжарки: "
@@ -116,7 +124,7 @@ public class ProductsServiceImpl implements ProductsService {
     @Override
     public Product findById(String id) {
         Optional<Product> foundProduct = productRepository.findAll().stream()
-                .filter(p -> p.getProductId().equals(id))
+                .filter(p -> p.isAvailable() && p.getProductId().equals(id))
                 .findFirst();
         return foundProduct.orElse(null);
     }
@@ -150,12 +158,5 @@ public class ProductsServiceImpl implements ProductsService {
     @Override
     public Product removeCoffeeById(String id) {
         return productRepository.deleteById(id);
-    }
-
-    @Override
-    public String makeOrder(String productId, int count) {
-        Product product = findById(productId);
-        // not completed yet
-        return "";
     }
 }

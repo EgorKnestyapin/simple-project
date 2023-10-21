@@ -57,12 +57,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "id='" + id + '\'' +
-                ", productId='" + productId + '\'' +
-                ", count=" + count +
-                ", email='" + email + '\'' +
-                ", bill=" + bill +
-                '}';
+        return "\nId заказа: " + getId() + "\nId продукта: " + getProductId() + ", количество: " + getCount()
+                + "\nОбщий счет: " + getBill() + ", чек отправлен на email: " + getEmail();
     }
 }

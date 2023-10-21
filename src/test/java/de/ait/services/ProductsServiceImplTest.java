@@ -18,12 +18,12 @@ class ProductsServiceImplTest {
     }
 
     @Test
-    void getCoffee() {
-        List<String> actual = productsService.getCoffee();
+    void getCoffeeWithoutIds() {
+        List<String> actual = productsService.getCoffeeWithoutIds();
         List<String> expected = List.of(
                 "\nСтрана: Brazil, сорт кофе: ARABICA, степень обжарки: LIGHT, цена за 100 гр.: 5.5, рейтинг: 4.1",
-                "\nСтрана: Columbia, сорт кофе: HYBRID, степень обжарки: MIDDLE, цена за 100 гр.: 4.0, рейтинг: 4.0",
-                "\nСтрана: Jordan, сорт кофе: ROBUSTA, степень обжарки: DARK, цена за 100 гр.: 2.0, рейтинг: 3.2"
+                "\nСтрана: Jordan, сорт кофе: ROBUSTA, степень обжарки: DARK, цена за 100 гр.: 2.0, рейтинг: 3.2",
+                "\nСтрана: Columbia, сорт кофе: HYBRID, степень обжарки: MIDDLE, цена за 100 гр.: 4.0, рейтинг: 4.0"
         );
         assertEquals(expected, actual);
     }
@@ -99,11 +99,11 @@ class ProductsServiceImplTest {
     @Test
     void addCoffee() {
         productsService.addCoffee(new ProductDto("Nicaragua", "DARK", "ARABICA", "4.4", "3.0", "true"));
-        List<String> actual = productsService.getCoffee();
+        List<String> actual = productsService.getCoffeeWithoutIds();
         List<String> expected = List.of(
                 "\nСтрана: Brazil, сорт кофе: ARABICA, степень обжарки: LIGHT, цена за 100 гр.: 5.5, рейтинг: 4.1",
-                "\nСтрана: Columbia, сорт кофе: HYBRID, степень обжарки: MIDDLE, цена за 100 гр.: 4.0, рейтинг: 4.0",
                 "\nСтрана: Jordan, сорт кофе: ROBUSTA, степень обжарки: DARK, цена за 100 гр.: 2.0, рейтинг: 3.2",
+                "\nСтрана: Columbia, сорт кофе: HYBRID, степень обжарки: MIDDLE, цена за 100 гр.: 4.0, рейтинг: 4.0",
                 "\nСтрана: Nicaragua, сорт кофе: ARABICA, степень обжарки: DARK, цена за 100 гр.: 4.4, рейтинг: 3.0"
         );
         assertEquals(expected, actual);
